@@ -213,11 +213,10 @@ class PickUpInStore implements Shipping {
 
 
 class Order {
-  private int $id;
-  private array $items;
-  private bool $payed;
-
-  // constructor
+  public function __construct(
+    private int $id,
+    private array $items
+  ) {}
 
   public function markAsPaid(): void {
     this->payed = true;
@@ -243,14 +242,16 @@ class DraftOrder extends Order {
 
 // L GOOD
 class Order {
-  private int $id;
-  private array $items;
-
-  // constructor
+  public function __construct(
+    private int $id,
+    private array $items
+  ) {}
 }
 
 class ConfirmedOrder extends Order {
-  private bool $payed;
+  public function __construct(
+    private bool $payed
+  ) {}
 
   public function markAsPaid(): void {
     this->payed = true;
@@ -325,29 +326,36 @@ class Duck implements Animal {
 
 
 // D
+class MySQLDatabase {
+  public function save(Order $order) {
+      if (empty($order->id)) {
+          $this->insert($order);
+      } else {
+          $this->update($order);
+      }
+  }
+
+  private function insert(Order $order) {
+      // Insertion dans la base de données MySQL
+  }
+
+  private function update(Order $order) {
+      // Mise à jour dans la base de données MySQL
+  }
+}
+
 class OrderService {
   private MySQLDatabase $database;
 
-  // constructor
+  public function __construct(MySQLDatabase $database) {
+      $this->database = $database;
+  }
 
-  public function save(Order $order): void {
-    if (empty($order->id)) {
-      $this->database->insert($order);
-    } else {
-      $this->database->update($order);
-    }
+  public function saveOrder(Order $order): void {
+      $this->database->save($order);
   }
 }
 
-class MySQLDatabase {
-  public function insert(Order $order) {
-    // insert
-  }
-
-  public function update(Order $order) {
-    // update
-  }
-}
 
 
 
