@@ -22,6 +22,7 @@ $words = ['cat', 'dog', 'tac', 'god', 'act'];
 ```
 
 ### Sample code
+
 ```php
 <?php
 

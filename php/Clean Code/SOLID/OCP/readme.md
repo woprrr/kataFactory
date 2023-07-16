@@ -7,6 +7,7 @@ Les entités logicielles (classes, modules, etc.) doivent être ouvertes à l'ex
 Prenons l'exemple d'une classe `Order` qui est responsable de gèrer les méthodes de livraison et leurs côuts associés. Cependant, la classe viole le principe ouvert à l'extension fermé à la modification (OCP) car il y a une logique de gestion en fonction de la méthode de livraison au sein de la classe `Order`.
 
 ### Sample code
+
 ```php
 <?php
 
@@ -81,6 +82,7 @@ class Order {
 Prenons l'exemple d'une classe "Product" qui est responsable de la gestion des informations de produit. La classes `Cart` est chargée d'encapsuler des `Product` et afficher le prix total du panier avec les produits choisit. Cependant, la classe viole le principe ouvert à l'extension fermé à la modification (OCP) car il y a une logique de gestion en fonction du produit au sein de la classe `Product`.
 
 ### Sample code
+
 ```php
 <?php
 
