@@ -212,21 +212,51 @@ class PickUpInStore implements Shipping {
 
 
 
-class Order {
-  public function __construct(
-    private int $id,
-    private array $items
-  ) {}
+// L
+class Rectangle
+{
+    protected $width;
+    protected $height;
 
-  public function markAsPaid(): void {
-    this->payed = true;
-  }
+    public function setHeight($height)
+    {
+        $this->height = $height;
+    }
+
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    public function setWidth($width)
+    {
+        $this->width = $width;
+    }
+
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    public function area()
+    {
+         return $this->height * $this->width;
+    }
 }
 
-class DraftOrder extends Order {
-  public function markAsPaid(): void {
-    throw new Error("Draft orders can't be payed");
-  }
+class Square extends Rectangle
+{
+    public function setHeight($value)
+    {
+        $this->width = $value;
+        $this->height = $value;
+    }
+
+    public function setWidth($value)
+    {
+        $this->width = $value;
+        $this->height = $value;
+    }
 }
 
 
@@ -241,21 +271,64 @@ class DraftOrder extends Order {
 
 
 // L GOOD
-class Order {
-  public function __construct(
-    private int $id,
-    private array $items
-  ) {}
+interface ShapeInterface
+{
+    public function setHeight($height);
+    public function getHeight();
+    public function setWidth($width);
+    public function getWidth();
+    public function area();
 }
 
-class ConfirmedOrder extends Order {
-  public function __construct(
-    private bool $payed
-  ) {}
+abstract class AbstractShape implements ShapeInterface
+{
+    protected $width;
+    protected $height;
 
-  public function markAsPaid(): void {
-    this->payed = true;
-  }
+    public function setHeight($height)
+    {
+        $this->height = $height;
+    }
+
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    public function setWidth($width)
+    {
+        $this->width = $width;
+    }
+
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    public function area()
+    {
+        return $this->height * $this->width;
+    }
+}
+
+class Rectangle extends AbstractShape
+{
+    // La classe Rectangle hérite du comportement de la classe abstraite AbstractShape.
+}
+
+class Square extends AbstractShape
+{
+    public function setHeight($side)
+    {
+        $this->width = $side;
+        $this->height = $side;
+    }
+
+    public function setWidth($side)
+    {
+        $this->width = $side;
+        $this->height = $side;
+    }
 }
 
 
